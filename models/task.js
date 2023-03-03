@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       content: DataTypes.STRING,
       videoLink: DataTypes.STRING,
       userId: DataTypes.INTEGER,
-      categoryId: DataTypes.INTEGER,
     },
     {
       sequelize,
