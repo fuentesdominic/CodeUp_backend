@@ -1,8 +1,10 @@
 'use strict';
+const { User } = require('../models')
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
+    const u = await User.findAll({ raw: true })
     await queryInterface.bulkInsert('categories', [
       {
         name: 'HTML',
