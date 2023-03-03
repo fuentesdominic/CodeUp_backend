@@ -7,21 +7,25 @@ module.exports = {
       userId: 1,
       taskId: 1,
       notes: "console.log('Hello World!')",
+      completed: false
     },
     {
       userId: 1,
       taskId: 2,
       notes: "I learned fast",
+      completed: false
     },
     {
       userId: 1,
       taskId: 3,
       notes: "need to relearn this",
+      completed: false
     },
     {
       userId: 1,
       taskId: 4,
       notes: "need to relearn this",
+      completed: false
     },
     ])
   },
