@@ -1,0 +1,28 @@
+{
+  "name": "codeup_backend",
+  "version": "1.0.0",
+  "description": "Hector Flores <<<<<<< HEAD =======",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuentesdominic/CodeUp_backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fuentesdominic/CodeUp_backend/issues"
+  },
+  "homepage": "https://github.com/fuentesdominic/CodeUp_backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21",
+    "pg": "^8.9.0",
+    "sequelize": "^6.29.0"
+  }
+}
