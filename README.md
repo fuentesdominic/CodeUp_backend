@@ -3,6 +3,7 @@
 
 Hector Flores
 
+Dominic Fuentes
 
 Tina Yang
 
