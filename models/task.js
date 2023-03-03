@@ -8,7 +8,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Task.BelongsToMany(models.User, {
+        foreignKey: 'userId',
+        as: 'userlist',
+        through: models.UserTask
+      })
+
     }
   }
   Task.init(
@@ -16,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       content: DataTypes.STRING,
       videoLink: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER
+      //delete^
     },
     {
       sequelize,

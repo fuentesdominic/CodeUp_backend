@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('user_tasks', {
+    await queryInterface.createTable('usertasks', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,13 +10,31 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'userId',
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+        }
       },
       taskId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'taskId',
+        onDelete: 'CASCADE',
+        references: {
+          model: 'tasks',
+          key: 'id'
+        }
       },
       notes: {
         type: Sequelize.STRING
+      },
+      completed: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +47,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('user_tasks');
+    await queryInterface.dropTable('usertasks');
   }
 };
