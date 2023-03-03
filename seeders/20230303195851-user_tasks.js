@@ -7,25 +7,33 @@ module.exports = {
       userId: 1,
       taskId: 1,
       notes: "console.log('Hello World!')",
-      completed: false
+      completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       userId: 1,
       taskId: 2,
       notes: "I learned fast",
-      completed: false
+      completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       userId: 1,
       taskId: 3,
       notes: "need to relearn this",
-      completed: false
+      completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     {
       userId: 1,
       taskId: 4,
       notes: "need to relearn this",
-      completed: false
+      completed: false,
+      createdAt: new Date(),
+      updatedAt: new Date()
     },
     ])
   },
