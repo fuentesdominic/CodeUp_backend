@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       references: {
         model: 'users',
-        key: 'id'
+        key: 'id',
       }
     },
     taskId: {
