@@ -3,7 +3,7 @@ const { User, Task } = require('../models')
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('tasks', [{
+    await queryInterface.bulkInsert('usertasks', [{
       userId: 1,
       taskId: 1,
       notes: "console.log('Hello World!')",
@@ -40,7 +40,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
 
-    await queryInterface.bulkDelete('People', null, {});
+    await queryInterface.bulkDelete('usertasks', null, {});
 
   }
 };
