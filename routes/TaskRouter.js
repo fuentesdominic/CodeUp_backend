@@ -1,25 +1,25 @@
 const router = require("express").Router();
-const controller = require("../controllers/PostController");
+const controller = require("../controllers/TaskController");
 const middleware = require("../middleware");
 
-router.get("/", controller.GetPosts);
+router.get("/", controller.GetTasks);
 router.post(
   "/",
   middleware.stripToken,
   middleware.verifyToken,
-  controller.CreatePost
+  controller.CreateTask
 );
 router.put(
   "/:post_id",
   middleware.stripToken,
   middleware.verifyToken,
-  controller.UpdatePost
+  controller.UpdateTask
 );
 router.delete(
   "/:post_id",
   middleware.stripToken,
   middleware.verifyToken,
-  controller.DeletePost
+  controller.DeleteTask
 );
 
 module.exports = router;
