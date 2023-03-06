@@ -43,9 +43,49 @@ const DeleteUserTask = async (req, res) => {
   }
 };
 
+const GetHtmlNotes = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: [1, 2, 3] } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetCSSNotes = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: [4, 5, 6] } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetJavaScriptNotes = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: [7, 8, 9] } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetReactNotes = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: [10, 11, 12] } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   GetUserTasks,
   CreateUserTask,
   UpdateUserTask,
   DeleteUserTask,
+  GetHtmlNotes,
+  GetCSSNotes,
+  GetJavaScriptNotes,
+  GetReactNotes
 };
