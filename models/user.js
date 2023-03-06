@@ -9,16 +9,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.belongsToMany(models.Task, {
-        foreignKey: 'userId',
-        as: 'tasklist',
-        through: models.UserTask
-      })
+        foreignKey: "userId",
+        as: "tasklist",
+        through: models.UserTask,
+      });
     }
   }
   User.init(
     {
       email: DataTypes.STRING,
-      password: DataTypes.STRING,
+      passwordDigest: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       name: DataTypes.STRING,
     },
     {
