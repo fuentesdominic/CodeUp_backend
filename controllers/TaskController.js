@@ -9,6 +9,42 @@ const GetTasks = async (req, res) => {
   }
 };
 
+const GetHtmlTasks = async (req, res) => {
+  try {
+    const tasks = await Task.findAll({ where: { category: "HTML" } });
+    res.send(tasks);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetCssTasks = async (req, res) => {
+  try {
+    const tasks = await Task.findAll({ where: { category: "CSS" } });
+    res.send(tasks);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetJsTasks = async (req, res) => {
+  try {
+    const tasks = await Task.findAll({ where: { category: "JavaScript" } });
+    res.send(tasks);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetReactTasks = async (req, res) => {
+  try {
+    const tasks = await Task.findAll({ where: { category: "React" } });
+    res.send(tasks);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const CreateTask = async (req, res) => {
   try {
     const task = await Task.create({ ...req.body });
@@ -48,4 +84,8 @@ module.exports = {
   CreateTask,
   UpdateTask,
   DeleteTask,
+  GetHtmlTasks,
+  GetCssTasks,
+  GetJsTasks,
+  GetReactTasks,
 };

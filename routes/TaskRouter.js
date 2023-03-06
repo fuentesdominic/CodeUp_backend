@@ -22,4 +22,9 @@ router.delete(
   controller.DeleteTask
 );
 
+router.get("/html", controller.GetHtmlTasks);
+router.get("/css", controller.GetCssTasks);
+router.get("/javascript", controller.GetJsTasks);
+router.get("/react", controller.GetReactTasks);
+
 module.exports = router;
