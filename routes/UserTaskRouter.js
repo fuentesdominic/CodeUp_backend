@@ -4,6 +4,9 @@ const middleware = require("../middleware");
 
 router.get("/", controller.GetUserTasks);
 router.get('/html', controller.GetHtmlNotes)
+router.get('/css', controller.GetCSSNotes)
+router.get('/javascript', controller.GetJavaScriptNotes)
+router.get('/react', controller.GetReactNotes)
 router.post(
   "/",
   middleware.stripToken,
