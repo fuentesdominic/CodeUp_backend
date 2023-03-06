@@ -30,7 +30,7 @@ const UpdateTask = async (req, res) => {
   }
 };
 
-const DeleteTesk = async (req, res) => {
+const DeleteTask = async (req, res) => {
   try {
     await Task.destroy({ where: { id: req.params.task_id } });
     res.send({
