@@ -10,13 +10,13 @@ router.post(
   controller.CreateTask
 );
 router.put(
-  "/:post_id",
+  "/:task_id",
   middleware.stripToken,
   middleware.verifyToken,
   controller.UpdateTask
 );
 router.delete(
-  "/:post_id",
+  "/:task_id",
   middleware.stripToken,
   middleware.verifyToken,
   controller.DeleteTask
