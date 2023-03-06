@@ -52,9 +52,62 @@ const GetHtmlNotes = async (req, res) => {
   }
 };
 
-const GetCSSNotes = async (req, res) => {
+const GetHtmlOne = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 1 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetHtmlTwo = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 2 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetHtmlThree = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 3 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetCssNotes = async (req, res) => {
   try {
     const notes = await UserTask.findAll({ where: { taskId: [4, 5, 6] } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+const GetCssOne = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 4 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetCssTwo = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 5 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetCssThree = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 6 } });
     res.send(notes);
   } catch (error) {
     throw error;
@@ -70,9 +123,64 @@ const GetJavaScriptNotes = async (req, res) => {
   }
 };
 
+const GetJavaScriptOne = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 7 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetJavaScriptTwo = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 8 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetJavaScriptThree = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 0 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 const GetReactNotes = async (req, res) => {
   try {
     const notes = await UserTask.findAll({ where: { taskId: [10, 11, 12] } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetReactOne = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 10 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetReactTwo = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 11 } });
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetReactThree = async (req, res) => {
+  try {
+    const notes = await UserTask.findAll({ where: { taskId: 12 } });
     res.send(notes);
   } catch (error) {
     throw error;
@@ -85,7 +193,20 @@ module.exports = {
   UpdateUserTask,
   DeleteUserTask,
   GetHtmlNotes,
-  GetCSSNotes,
+  GetHtmlOne,
+  GetHtmlTwo,
+  GetHtmlThree,
+  GetCssNotes,
+  GetCssOne,
+  GetCssTwo,
+  GetCssThree,
   GetJavaScriptNotes,
-  GetReactNotes
+  GetJavaScriptOne,
+  GetJavaScriptTwo,
+  GetJavaScriptThree,
+  GetReactNotes,
+  GetReactOne,
+  GetReactTwo,
+  GetReactThree,
+
 };
