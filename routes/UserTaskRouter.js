@@ -3,6 +3,7 @@ const controller = require("../controllers/UserTaskController");
 const middleware = require("../middleware");
 
 router.get("/", controller.GetUserTasks);
+router.get('/html', controller.GetHtmlNotes)
 router.post(
   "/",
   middleware.stripToken,
