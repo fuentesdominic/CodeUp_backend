@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
 const AuthRouter = require("./routes/AuthRouter");
-const PostRouter = require("./routes/PostRouter");
+const PostRouter = require("./routes/TaskRouter");
 
 const app = express();
 
