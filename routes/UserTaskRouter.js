@@ -3,12 +3,9 @@ const controller = require("../controllers/UserTaskController");
 const middleware = require("../middleware");
 
 router.get("/", controller.GetUserTasks);
-router.get('/html', controller.GetHtmlNotes)
-router.get('/css', controller.GetCSSNotes)
-router.get('/javascript', controller.GetJavaScriptNotes)
-router.get('/react', controller.GetReactNotes)
+router.get('/:id', controller.GetUserTaskByTaskId)
 router.post(
-  "/",
+  "/:usrtask_id",
   middleware.stripToken,
   middleware.verifyToken,
   controller.CreateUserTask
