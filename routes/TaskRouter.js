@@ -3,6 +3,7 @@ const controller = require("../controllers/TaskController");
 const middleware = require("../middleware");
 
 router.get("/", controller.GetTasks);
+router.get("/:id", controller.GetTaskById);
 router.post(
   "/",
   middleware.stripToken,
