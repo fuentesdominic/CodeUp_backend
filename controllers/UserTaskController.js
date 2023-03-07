@@ -9,6 +9,17 @@ const GetUserTasks = async (req, res) => {
   }
 };
 
+const GetUserTaskByTaskId = async (req, res) => {
+  try {
+    const taskId = parseInt(req.params.id)
+    const notes = await UserTask.findAll({ where: { taskId: taskId } })
+    console.log(notes)
+    res.send(notes)
+  } catch (error) {
+    throw error;
+  }
+};
+
 const CreateUserTask = async (req, res) => {
   try {
     const userTask = await UserTask.create({ ...req.body });
@@ -17,6 +28,7 @@ const CreateUserTask = async (req, res) => {
     throw error;
   }
 };
+
 
 const UpdateUserTask = async (req, res) => {
   try {
@@ -208,5 +220,6 @@ module.exports = {
   GetReactOne,
   GetReactTwo,
   GetReactThree,
+  GetUserTaskByTaskId
 
 };
