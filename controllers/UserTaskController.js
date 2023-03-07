@@ -1,4 +1,4 @@
-const { UserTask } = require("../models");
+const { UserTask, Task } = require("../models");
 
 const GetUserTasks = async (req, res) => {
   try {
@@ -6,6 +6,21 @@ const GetUserTasks = async (req, res) => {
     res.send(userTasks);
   } catch (error) {
     throw error;
+  }
+};
+
+const AddTasksToUser = async (req, res) => {
+  try {
+    const { user_id, task_id } = req.params;
+    const userId = parseInt(user_id)
+
+    // const user = await User.findByPk(user_id);
+    if (!user || !task) {
+      return res.status(404).send({ status: "Error", msg: "User or task not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "Error", msg: "An error has occurred!" });
   }
 };
 
@@ -62,6 +77,6 @@ module.exports = {
   CreateUserTask,
   UpdateUserTask,
   DeleteUserTask,
-  GetUserTaskByTaskId
-
+  GetUserTaskByTaskId,
+  AddTasksToUser
 };

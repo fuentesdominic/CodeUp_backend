@@ -1,4 +1,5 @@
-const { User } = require("../models");
+const { User, Task, UserTask } = require("../models");
+const { AddTasksToUser } = require("../controllers/UserTaskController")
 const middleware = require("../middleware");
 
 const Register = async (req, res) => {
@@ -6,7 +7,18 @@ const Register = async (req, res) => {
     const { email, password, name } = req.body;
     let passwordDigest = await middleware.hashPassword(password);
     const user = await User.create({ email, passwordDigest, name });
-    res.send(user);
+    //
+    const tasks = await Task.findAll()
+    if (tasks && tasks.length > 0) {
+      await tasks.forEach(task => {
+        UserTask.create({ userId: user.id, taskId: task.id })
+      });
+      return res.status(201).send(user)
+    }
+    // return res.send(user);
+    // create a function to populate tasks with using join table
+    // find userId, task id
+
   } catch (error) {
     throw error;
   }
