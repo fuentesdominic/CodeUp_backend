@@ -3,7 +3,7 @@ const controller = require("../controllers/TaskController");
 const middleware = require("../middleware");
 
 router.get("/", controller.GetTasks);
-router.get("/:id", controller.GetTaskById);
+
 router.post(
   "/",
   middleware.stripToken,
@@ -27,5 +27,6 @@ router.get("/html", controller.GetHtmlTasks);
 router.get("/css", controller.GetCssTasks);
 router.get("/javascript", controller.GetJsTasks);
 router.get("/react", controller.GetReactTasks);
+router.get("/:id", controller.GetTaskById);
 
 module.exports = router;
