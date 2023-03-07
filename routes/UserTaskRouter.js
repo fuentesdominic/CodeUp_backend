@@ -12,8 +12,8 @@ router.post(
 );
 router.put(
   "/:usrtask_id",
-  middleware.stripToken,
-  middleware.verifyToken,
+  // middleware.stripToken,
+  // middleware.verifyToken,
   controller.UpdateUserTask
 );
 router.delete(

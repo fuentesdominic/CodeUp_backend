@@ -9,6 +9,16 @@ const GetTasks = async (req, res) => {
   }
 };
 
+const GetTaskById = async (req, res) => {
+  try {
+    const taskId = parseInt(req.params.id)
+    const tasks = await Task.findByPk(taskId);
+    res.send(tasks);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const GetHtmlTasks = async (req, res) => {
   try {
     const tasks = await Task.findAll({ where: { category: "HTML" } });
@@ -88,4 +98,5 @@ module.exports = {
   GetCssTasks,
   GetJsTasks,
   GetReactTasks,
+  GetTaskById
 };
