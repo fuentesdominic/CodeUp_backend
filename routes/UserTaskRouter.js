@@ -5,7 +5,7 @@ const middleware = require("../middleware");
 router.get("/", controller.GetUserTasks);
 router.get('/:id', controller.GetUserTaskByTaskId)
 router.post(
-  "/",
+  "/:usrtask_id",
   middleware.stripToken,
   middleware.verifyToken,
   controller.CreateUserTask

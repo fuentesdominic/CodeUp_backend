@@ -22,7 +22,8 @@ const GetUserTaskByTaskId = async (req, res) => {
 
 const CreateUserTask = async (req, res) => {
   try {
-    const userTask = await UserTask.create({ ...req.body });
+    const userTask = await UserTask.create({ ...req.body },
+      { where: { id: req.params.usrtask_id }, returning: true });
     res.send(userTask);
   } catch (error) {
     throw error;
