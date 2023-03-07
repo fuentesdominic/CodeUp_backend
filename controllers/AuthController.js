@@ -7,6 +7,8 @@ const Register = async (req, res) => {
     let passwordDigest = await middleware.hashPassword(password);
     const user = await User.create({ email, passwordDigest, name });
     res.send(user);
+    // create a function to populate tasks with using join table
+    // find userId, task id
   } catch (error) {
     throw error;
   }
