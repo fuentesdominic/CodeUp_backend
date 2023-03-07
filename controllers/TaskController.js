@@ -1,4 +1,20 @@
-const { Task } = require("../models");
+const { Task, User } = require("../models");
+
+const addTask = async (req, res) => {
+  try {
+    const { user_id, task_id } = req.params;
+    const user = await User.findByPk(user_id);
+    const task = await Task.findByPk(task_id);
+    if (!user || !task) {
+      return res.status(404).send({ status: "Error", msg: "User or task not found" });
+    }
+    await user.addTask(task);
+    return res.send({ status: "Ok", msg: "Task added to user" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "Error", msg: "An error has occurred!" });
+  }
+};
 
 const GetTasks = async (req, res) => {
   try {
@@ -99,4 +115,5 @@ module.exports = {
   GetJsTasks,
   GetReactTasks,
   GetTaskById,
+  addTask
 };

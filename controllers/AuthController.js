@@ -1,14 +1,18 @@
-const { User } = require("../models");
+const { User, Task } = require("../models");
 const middleware = require("../middleware");
 
 const Register = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password, name, tasks } = req.body;
     let passwordDigest = await middleware.hashPassword(password);
     const user = await User.create({ email, passwordDigest, name });
+    if (tasks && tasks.length > 0) {
+      await user.addTasks(tasks);
+    }
     res.send(user);
     // create a function to populate tasks with using join table
     // find userId, task id
+
   } catch (error) {
     throw error;
   }
