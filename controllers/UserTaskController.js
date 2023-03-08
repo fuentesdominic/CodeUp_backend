@@ -12,11 +12,13 @@ const GetUserTasks = async (req, res) => {
 const AddTasksToUser = async (req, res) => {
   try {
     const { user_id, task_id } = req.params;
-    const userId = parseInt(user_id)
+    const userId = parseInt(user_id);
 
     // const user = await User.findByPk(user_id);
     if (!user || !task) {
-      return res.status(404).send({ status: "Error", msg: "User or task not found" });
+      return res
+        .status(404)
+        .send({ status: "Error", msg: "User or task not found" });
     }
   } catch (error) {
     console.log(error);
@@ -26,11 +28,13 @@ const AddTasksToUser = async (req, res) => {
 
 const GetUserTaskByTaskId = async (req, res) => {
   try {
-    const taskId = parseInt(req.params.id)
-    const userId = parseInt(req.params.userId)
-    const notes = await UserTask.findAll({ where: { taskId: taskId, userId: userId } })
+    const taskId = parseInt(req.params.id);
+    const userId = parseInt(req.params.userId);
+    const notes = await UserTask.findAll({
+      where: { taskId: taskId, userId: userId },
+    });
     // console.log(notes)
-    res.send(notes)
+    res.send(notes);
   } catch (error) {
     throw error;
   }
@@ -38,21 +42,24 @@ const GetUserTaskByTaskId = async (req, res) => {
 
 const CreateUserTask = async (req, res) => {
   try {
-    const userTask = await UserTask.create({ ...req.body },
-      { where: { id: req.params.usrtask_id }, returning: true });
+    const userTask = await UserTask.create(
+      { ...req.body },
+      { where: { id: req.params.usrtask_id }, returning: true }
+    );
     res.send(userTask);
   } catch (error) {
     throw error;
   }
 };
 
-
 const UpdateUserTask = async (req, res) => {
   try {
-
     const userTask = await UserTask.update(
       { ...req.body },
-      { where: { taskId: +req.params.taskId, userId: +req.params.userId }, returning: true }
+      {
+        where: { taskId: +req.params.taskId, userId: +req.params.userId },
+        returning: true,
+      }
     );
     res.send(userTask);
   } catch (error) {
@@ -62,10 +69,12 @@ const UpdateUserTask = async (req, res) => {
 
 const DeleteUserTask = async (req, res) => {
   try {
-    await UserTask.destroy({ where: { id: req.params.usrtask_id } });
+    await UserTask.destroy({
+      where: { id: +req.params.taskId, userId: +req.params.userId },
+    });
     res.send({
       msg: "Task Deleted",
-      payload: req.params.usrtask_id,
+      //   payload: req.params.taskId,
       status: "Ok",
     });
   } catch (error) {
@@ -73,12 +82,11 @@ const DeleteUserTask = async (req, res) => {
   }
 };
 
-
 module.exports = {
   GetUserTasks,
   CreateUserTask,
   UpdateUserTask,
   DeleteUserTask,
   GetUserTaskByTaskId,
-  AddTasksToUser
+  AddTasksToUser,
 };
