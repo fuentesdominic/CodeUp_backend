@@ -33,4 +33,11 @@ router.delete(
   controller.DeleteUserTask
 );
 
+router.post(
+  "/:taskId/user/:userId",
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.CreateTaskByTaskId
+);
+
 module.exports = router;

@@ -52,6 +52,24 @@ const CreateUserTask = async (req, res) => {
   }
 };
 
+const CreateTaskByTaskId = async (req, res) => {
+  try {
+    const taskId = parseInt(req.params.taskId);
+    const userId = parseInt(req.params.userId);
+    console.log(taskId, userId);
+    const usertask = await UserTask.create(
+      { userId: userId, taskId: taskId },
+      {
+        where: { taskId: taskId, userId: userId },
+      }
+    );
+
+    res.send(usertask);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const UpdateUserTask = async (req, res) => {
   try {
     const userTask = await UserTask.update(
@@ -89,4 +107,5 @@ module.exports = {
   DeleteUserTask,
   GetUserTaskByTaskId,
   AddTasksToUser,
+  CreateTaskByTaskId,
 };
