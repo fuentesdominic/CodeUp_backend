@@ -2,8 +2,14 @@ const router = require("express").Router();
 const controller = require("../controllers/UserTaskController");
 const middleware = require("../middleware");
 
-router.get("/", controller.GetUserTasks);
-router.get('/:id', controller.GetUserTaskByTaskId)
+router.get("/",
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetUserTasks);
+router.get('/:id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetUserTaskByTaskId)
 router.post(
   "/:usrtask_id",
   middleware.stripToken,
@@ -11,9 +17,9 @@ router.post(
   controller.CreateUserTask
 );
 router.put(
-  "/:usrtask_id",
-  // middleware.stripToken,
-  // middleware.verifyToken,
+  "/:taskId/user/:userId",
+  middleware.stripToken,
+  middleware.verifyToken,
   controller.UpdateUserTask
 );
 router.delete(
