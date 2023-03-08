@@ -2,7 +2,11 @@ const router = require("express").Router();
 const controller = require("../controllers/TaskController");
 const middleware = require("../middleware");
 
-router.get("/", controller.GetTasks);
+router.get("/",
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetTasks);
+
 router.post(
   "/",
   middleware.stripToken,
@@ -22,9 +26,25 @@ router.delete(
   controller.DeleteTask
 );
 
-router.get("/html", controller.GetHtmlTasks);
-router.get("/css", controller.GetCssTasks);
-router.get("/javascript", controller.GetJsTasks);
-router.get("/react", controller.GetReactTasks);
+router.get("/html",
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetHtmlTasks);
+router.get("/css",
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetCssTasks);
+router.get("/javascript",
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetJsTasks);
+router.get("/react",
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetReactTasks);
+router.get("/:id",
+  middleware.stripToken,
+  middleware.verifyToken,
+  controller.GetTaskById);
 
 module.exports = router;

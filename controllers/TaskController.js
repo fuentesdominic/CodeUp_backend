@@ -1,4 +1,5 @@
-const { Task } = require("../models");
+const { Task, User } = require("../models");
+
 
 const GetTasks = async (req, res) => {
   try {
@@ -39,6 +40,16 @@ const GetJsTasks = async (req, res) => {
 const GetReactTasks = async (req, res) => {
   try {
     const tasks = await Task.findAll({ where: { category: "React" } });
+    res.send(tasks);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const GetTaskById = async (req, res) => {
+  try {
+    const taskId = parseInt(req.params.id);
+    const tasks = await Task.findByPk(taskId);
     res.send(tasks);
   } catch (error) {
     throw error;
@@ -88,4 +99,5 @@ module.exports = {
   GetCssTasks,
   GetJsTasks,
   GetReactTasks,
+  GetTaskById,
 };

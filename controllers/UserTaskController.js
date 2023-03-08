@@ -1,4 +1,4 @@
-const { UserTask } = require("../models");
+const { UserTask, Task } = require("../models");
 
 const GetUserTasks = async (req, res) => {
   try {
@@ -9,9 +9,43 @@ const GetUserTasks = async (req, res) => {
   }
 };
 
+const AddTasksToUser = async (req, res) => {
+  try {
+    const { user_id, task_id } = req.params;
+    const userId = parseInt(user_id);
+
+    // const user = await User.findByPk(user_id);
+    if (!user || !task) {
+      return res
+        .status(404)
+        .send({ status: "Error", msg: "User or task not found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ status: "Error", msg: "An error has occurred!" });
+  }
+};
+
+const GetUserTaskByTaskId = async (req, res) => {
+  try {
+    const taskId = parseInt(req.params.id);
+    const userId = parseInt(req.params.userId);
+    const notes = await UserTask.findAll({
+      where: { taskId: taskId, userId: userId },
+    });
+    // console.log(notes)
+    res.send(notes);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const CreateUserTask = async (req, res) => {
   try {
-    const userTask = await UserTask.create({ ...req.body });
+    const userTask = await UserTask.create(
+      { ...req.body },
+      { where: { id: req.params.usrtask_id }, returning: true }
+    );
     res.send(userTask);
   } catch (error) {
     throw error;
@@ -22,7 +56,10 @@ const UpdateUserTask = async (req, res) => {
   try {
     const userTask = await UserTask.update(
       { ...req.body },
-      { where: { id: req.params.usrtask_id }, returning: true }
+      {
+        where: { taskId: +req.params.taskId, userId: +req.params.userId },
+        returning: true,
+      }
     );
     res.send(userTask);
   } catch (error) {
@@ -32,48 +69,14 @@ const UpdateUserTask = async (req, res) => {
 
 const DeleteUserTask = async (req, res) => {
   try {
-    await UserTask.destroy({ where: { id: req.params.usrtask_id } });
+    await UserTask.destroy({
+      where: { taskId: +req.params.taskId, userId: +req.params.userId },
+    });
     res.send({
       msg: "Task Deleted",
-      payload: req.params.usrtask_id,
+      //   payload: req.params.taskId,
       status: "Ok",
     });
-  } catch (error) {
-    throw error;
-  }
-};
-
-const GetHtmlNotes = async (req, res) => {
-  try {
-    const notes = await UserTask.findAll({ where: { taskId: [1, 2, 3] } });
-    res.send(notes);
-  } catch (error) {
-    throw error;
-  }
-};
-
-const GetCSSNotes = async (req, res) => {
-  try {
-    const notes = await UserTask.findAll({ where: { taskId: [4, 5, 6] } });
-    res.send(notes);
-  } catch (error) {
-    throw error;
-  }
-};
-
-const GetJavaScriptNotes = async (req, res) => {
-  try {
-    const notes = await UserTask.findAll({ where: { taskId: [7, 8, 9] } });
-    res.send(notes);
-  } catch (error) {
-    throw error;
-  }
-};
-
-const GetReactNotes = async (req, res) => {
-  try {
-    const notes = await UserTask.findAll({ where: { taskId: [10, 11, 12] } });
-    res.send(notes);
   } catch (error) {
     throw error;
   }
@@ -84,8 +87,6 @@ module.exports = {
   CreateUserTask,
   UpdateUserTask,
   DeleteUserTask,
-  GetHtmlNotes,
-  GetCSSNotes,
-  GetJavaScriptNotes,
-  GetReactNotes
+  GetUserTaskByTaskId,
+  AddTasksToUser,
 };
