@@ -27,7 +27,8 @@ const AddTasksToUser = async (req, res) => {
 const GetUserTaskByTaskId = async (req, res) => {
   try {
     const taskId = parseInt(req.params.id)
-    const notes = await UserTask.findAll({ where: { taskId: taskId } })
+    const userId = parseInt(req.params.userId)
+    const notes = await UserTask.findAll({ where: { taskId: taskId, userId: userId } })
     // console.log(notes)
     res.send(notes)
   } catch (error) {

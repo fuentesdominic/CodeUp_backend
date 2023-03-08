@@ -6,7 +6,7 @@ router.get("/",
   middleware.stripToken,
   middleware.verifyToken,
   controller.GetUserTasks);
-router.get('/:id',
+router.get('/:id/user/:userId',
   middleware.stripToken,
   middleware.verifyToken,
   controller.GetUserTaskByTaskId)
