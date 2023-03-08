@@ -70,7 +70,7 @@ const UpdateUserTask = async (req, res) => {
 const DeleteUserTask = async (req, res) => {
   try {
     await UserTask.destroy({
-      where: { id: +req.params.taskId, userId: +req.params.userId },
+      where: { taskId: +req.params.taskId, userId: +req.params.userId },
     });
     res.send({
       msg: "Task Deleted",
