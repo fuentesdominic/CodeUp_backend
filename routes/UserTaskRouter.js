@@ -27,7 +27,7 @@ router.put(
   controller.UpdateUserTask
 );
 router.delete(
-  "/:id/user/:userId",
+  "/:taskId/user/:userId",
   middleware.stripToken,
   middleware.verifyToken,
   controller.DeleteUserTask
