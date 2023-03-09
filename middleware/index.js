@@ -23,7 +23,6 @@ const createToken = (payload) => {
 const stripToken = (req, res, next) => {
   try {
     const token = req.headers["authorization"].split(" ")[1];
-    console.log('HERE MANNY', token)
     if (token) {
       res.locals.token = token;
       return next();
