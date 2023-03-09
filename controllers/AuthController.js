@@ -25,7 +25,7 @@ const Login = async (req, res) => {
       where: { email: req.body.email },
       raw: true,
     });
-
+   
     let matched = await middleware.comparePassword(
       user.passwordDigest,
       req.body.password
