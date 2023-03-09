@@ -1,4 +1,4 @@
-const { UserTask, Task } = require("../models");
+const { UserTask } = require("../models");
 
 const GetUserTasks = async (req, res) => {
   try {
@@ -13,8 +13,6 @@ const AddTasksToUser = async (req, res) => {
   try {
     const { user_id, task_id } = req.params;
     const userId = parseInt(user_id);
-
-    // const user = await User.findByPk(user_id);
     if (!user || !task) {
       return res
         .status(404)
@@ -33,7 +31,6 @@ const GetUserTaskByTaskId = async (req, res) => {
     const notes = await UserTask.findAll({
       where: { taskId: taskId, userId: userId },
     });
-    // console.log(notes)
     res.send(notes);
   } catch (error) {
     throw error;
@@ -47,6 +44,24 @@ const CreateUserTask = async (req, res) => {
       { where: { id: req.params.usrtask_id }, returning: true }
     );
     res.send(userTask);
+  } catch (error) {
+    throw error;
+  }
+};
+
+const CreateTaskByTaskId = async (req, res) => {
+  try {
+    const taskId = parseInt(req.params.taskId);
+    const userId = parseInt(req.params.userId);
+    console.log(taskId, userId);
+    const usertask = await UserTask.create(
+      { userId: userId, taskId: taskId },
+      {
+        where: { taskId: taskId, userId: userId },
+      }
+    );
+
+    res.send(usertask);
   } catch (error) {
     throw error;
   }
@@ -74,7 +89,6 @@ const DeleteUserTask = async (req, res) => {
     });
     res.send({
       msg: "Task Deleted",
-      //   payload: req.params.taskId,
       status: "Ok",
     });
   } catch (error) {
@@ -89,4 +103,5 @@ module.exports = {
   DeleteUserTask,
   GetUserTaskByTaskId,
   AddTasksToUser,
+  CreateTaskByTaskId,
 };
